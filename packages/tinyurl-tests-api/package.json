@@ -1,0 +1,16 @@
+{
+  "name": "tinyurl-tests-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "chai": "^4.3.6",
+    "mocha": "^9.2.0",
+    "superagent": "^7.1.1",
+    "tinyurl-server": "1.0.0",
+    "tinyurl-api-utils": "1.0.0"
+  }
+}

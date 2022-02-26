@@ -1,0 +1,21 @@
+{
+  "name": "TinyUrl",
+  "version": "1.0.0",
+  "private": "true",
+  "workspaces": [
+    "packages/*"
+  ],
+  "description": "Unleash",
+  "main": "index.js",
+  "author": "Amit",
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  },
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "run-tests": "lerna run run-tests",
+    "new-version": "lerna version --conventional-commits --yes",
+    "diff": "lerna diff",
+    "clean": "lerna clean"
+  }
+}
