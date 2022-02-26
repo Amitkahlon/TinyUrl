@@ -6,9 +6,6 @@ import { addUrl, getLongUrl } from "../services/urlService";
 const jsonParser = bodyParser.json();
 
 const urlController = (app: Application) => {
-
-
-
   app.post("/url", jsonParser, (req: Request, res: Response) => {
     const payload = req.body.url;
     try {
@@ -40,11 +37,11 @@ const urlController = (app: Application) => {
       const longUrl = getLongUrl(id);
       res.redirect(longUrl);
     } catch (error: any) {
-      if (error.message === 'url does not exists') {
+      if (error.message === "url does not exists") {
         res.status(404).send({ message: error.message });
       } else {
         console.log(error);
-        res.status(500).send({ message: 'problem occurred' });
+        res.status(500).send({ message: "problem occurred" });
       }
     }
   });
