@@ -28,7 +28,7 @@ const addUrl = (longUrl: string) => {
     const url = getShortUrl(index);
     return url;
   } else {
-    throw { message: 'not a valid http/https url' };
+    throw { problem: "invalid", message: 'not a valid http/https url' };
   }
 };
 

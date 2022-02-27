@@ -19,67 +19,73 @@ const errorMessages = {
 
 describe("negative api tests", () => {
   describe("negative post requests", () => {
-    it("should not post empty url", async () => {
-      try {
-        await postUrl("");
-      } catch (error) {
+    it("should not post empty url", (done) => {
+      postUrl("").end((error, res) => {
+        expect(error).to.not.be.null;
         expect(error.status).to.eq(400);
         expect(error.response.body.message).to.eq(errorMessages.empty);
-      }
+
+        done();
+      });
     });
 
-    it("should not post long url(>150)", async () => {
-      try {
-        const validLink = "http://www.google.co.il/";
-        await postUrl(
-          validLink + generateRandomString(150 - validLink.length + 1)
-        );
-      } catch (error) {
-        expect(error.status).to.eq(400);
-        expect(error.response.body.message).to.eq(errorMessages.long);
-      }
+    it("should not post long url(>150)", (done) => {
+      const validLink = "http://www.google.co.il/";
+      postUrl(validLink + generateRandomString(150 - validLink.length + 1)).end(
+        (error, res) => {
+          expect(error).to.not.be.null;
+          expect(error.status).to.eq(400);
+          expect(error.response.body.message).to.eq(errorMessages.long);
+
+          done();
+        }
+      );
     });
 
-    it("should not post a random string", async () => {
+    it("should not post a random string", (done) => {
       const url = generateRandomString(15);
-      try {
-        await postUrl(url);
-      } catch (error) {
+      postUrl(url).end((error, res) => {
+        expect(error).to.not.be.null;
         expect(error.status).to.eq(400);
         expect(error.response.body.message).to.eq(errorMessages.bad);
-      }
+
+        done();
+      });
     });
 
-    it("should not post with bad protocol", async () => {
+    it("should not post with bad protocol", (done) => {
       const url = "htp://www.google.co.il/";
-      try {
-        await postUrl(url);
-      } catch (error) {
+      postUrl(url).end((error, res) => {
+        expect(error).to.not.be.null;
         expect(error.status).to.eq(400);
         expect(error.response.body.message).to.eq(errorMessages.bad);
-      }
+
+        done();
+      });
     });
 
-    it("should not post without protocol", async () => {
+    it("should not post without protocol", (done) => {
       const url = "www.google.co.il/";
-      try {
-        await postUrl(url);
-      } catch (error) {
+      postUrl(url).end((error, res) => {
+        expect(error).to.not.be.null;
         expect(error.status).to.eq(400);
         expect(error.response.body.message).to.eq(errorMessages.bad);
-      }
+
+        done();
+      });
     });
 
     describe("negative get requests", () => {
-      it("should not redirect with non existing url", async () => {
-        try {
-          //we assume it not exist
-          const nonexistingId = "qqzzas";
-          await getUrl(nonexistingId);
-        } catch (error) {
+      it("should not redirect with non existing url", (done) => {
+        //we assume it not exist atm
+        const nonexistingId = "qqzzascz";
+        getUrl(nonexistingId).end((error, res) => {
+          expect(error).to.not.be.null;
           expect(error.status).to.eq(404);
           expect(error.response.body.message).to.eq(errorMessages.notExists);
-        }
+
+          done();
+        });
       });
 
       const malformedIds = [

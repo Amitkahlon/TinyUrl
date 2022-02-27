@@ -12,21 +12,13 @@ const urlController = (app: Application) => {
       const url = addUrl(payload);
       res.send({ message: url });
     } catch (error: any) {
-      if (error.message === "not a valid http/https url") {
-        res.status(400).send({
-          message: "Please provide a valid url with http/https protocol",
-        });
-      } else if (error.problem === "short") {
-        res.status(400).send({
-          message: "url cannot be empty",
-        });
-      } else if (error.problem === "long") {
-        res.status(400).send({
-          message: "url cannot be longer than 150 characters",
-        });
+      if (error.problem) {
+        errorsHandlerObj[error.problem as keyof typeof errorsHandlerObj](
+          res,
+          error
+        );
       } else {
-        console.log(error);
-        res.status(500).send({ message: "problem occurred" });
+        errorsHandlerObj["default"](res, error);
       }
     }
   });
@@ -48,3 +40,25 @@ const urlController = (app: Application) => {
 };
 
 export default urlController;
+
+const errorsHandlerObj = {
+  invalid: (res: Response) => {
+    res.status(400).send({
+      message: "Please provide a valid url with http/https protocol",
+    });
+  },
+  short: (res: Response) => {
+    res.status(400).send({
+      message: "url cannot be empty",
+    });
+  },
+  long: (res: Response) => {
+    res.status(400).send({
+      message: "url cannot be longer than 150 characters",
+    });
+  },
+  default: (res: Response, error: any) => {
+    console.log(error);
+    res.status(500).send({ message: "problem occurred" });
+  },
+};
