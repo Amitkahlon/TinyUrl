@@ -39,21 +39,13 @@ describe("base62 encoder tests", () => {
 
     describe("negative", () => {
       it("should throw exception when encoding negative numbers => -1", () => {
-        try {
-          const base62Num = encoder.encode(-1);
-          expect(true).toEqual(false); //we expect it will not reach here.
-        } catch (error: any) {
-          expect(error.message).toEqual("number cannot be negative");
-        }
+        expect(() => encoder.encode(-1)).toThrow("number cannot be negative");
       });
 
       it("should throw exception when encoding negative numbers => -10000", () => {
-        try {
-          const base62Num = encoder.encode(-10000);
-          expect(true).toEqual(false); //we expect it will not reach here.
-        } catch (error: any) {
-          expect(error.message).toEqual("number cannot be negative");
-        }
+        expect(() => encoder.encode(-10000)).toThrow(
+          "number cannot be negative"
+        );
       });
     });
   });
@@ -66,15 +58,9 @@ describe("base62 encoder tests", () => {
     });
 
     describe("negative", () => {
-        it("should throw when not a valid chars", () => {
-          try {
-            const num = encoder.decode("#$#@!");
-            expect(true).toEqual(false); //cannot reach here
-          } catch (error: any) {
-            expect(error).toHaveProperty("message");
-            expect(error.message).toEqual("not a valid chars")           
-          }
-        })
-    })
+      it("should throw when not a valid chars", () => {
+        expect(() => encoder.decode("#$#@!")).toThrow("not a valid chars")
+      });
+    });
   });
 });
