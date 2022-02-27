@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.insert = exports.get = void 0;
+exports.setDb = exports.getDb = exports.insert = exports.get = void 0;
 var base62Encoder_1 = __importDefault(require("../services/base62Encoder"));
 var urlDb = [];
 /**
@@ -35,3 +35,11 @@ var get = function (base62Id) {
     return item;
 };
 exports.get = get;
+var getDb = function () {
+    return urlDb;
+};
+exports.getDb = getDb;
+var setDb = function (setter) {
+    urlDb = setter;
+};
+exports.setDb = setDb;

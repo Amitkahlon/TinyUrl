@@ -1,4 +1,3 @@
-// const encoder = require("../services/base62Encoder")
 import encoder from "../services/base62Encoder";
 
 const convertToBase62Test = (base10num: number, expectedResult: string) => {
@@ -59,8 +58,10 @@ describe("base62 encoder tests", () => {
 
     describe("negative", () => {
       it("should throw when not a valid chars", () => {
-        expect(() => encoder.decode("#$#@!")).toThrow("not a valid chars")
+        expect(() => encoder.decode("#$#@!")).toThrow("not a valid chars");
       });
+
+
     });
   });
 });

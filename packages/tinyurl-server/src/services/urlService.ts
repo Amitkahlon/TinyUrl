@@ -1,6 +1,5 @@
 import { insert, get } from '../dal/urlDAL';
-
-const BASE = 'http://localhost:5000';
+import { BASE } from "../appsettings.json";
 
 /**
  * returns url based on the base url and id
@@ -60,4 +59,4 @@ const isValidStringLength = (string: string) => {
   return validObj;
 };
 
-export { getShortUrl, addUrl, getLongUrl };
+export { getShortUrl, addUrl, getLongUrl, isValidHttpUrl };

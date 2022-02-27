@@ -9,6 +9,7 @@
       "terminal.integrated.defaultProfile.windows": "PowerShell",
       "mochaExplorer.files": "packages/tinyurl-tests-api/test/**/*.js",
       "cSpell.words": [
+        "appsettings",
         "Middlewares",
         "tinyurl"
       ],

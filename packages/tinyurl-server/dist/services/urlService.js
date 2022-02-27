@@ -1,15 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getLongUrl = exports.addUrl = exports.getShortUrl = void 0;
+exports.isValidHttpUrl = exports.getLongUrl = exports.addUrl = exports.getShortUrl = void 0;
 var urlDAL_1 = require("../dal/urlDAL");
-var BASE = 'http://localhost:5000';
+var appsettings_json_1 = require("../appsettings.json");
 /**
  * returns url based on the base url and id
  * @param id
  * @returns
  */
 var getShortUrl = function (id) {
-    var url = "".concat(BASE, "/").concat(id);
+    var url = "".concat(appsettings_json_1.BASE, "/").concat(id);
     return url;
 };
 exports.getShortUrl = getShortUrl;
@@ -49,6 +49,7 @@ var isValidHttpUrl = function (string) {
     }
     return url.protocol === 'http:' || url.protocol === 'https:';
 };
+exports.isValidHttpUrl = isValidHttpUrl;
 var isValidStringLength = function (string) {
     var length = string.length;
     var validObj = {
