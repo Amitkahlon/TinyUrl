@@ -1,6 +1,6 @@
 import base62Encoder from "../services/base62Encoder";
 
-const urlDb: Array<string> = [];
+let urlDb: Array<string> = [];
 
 /**
  * insert a new url and returns the short url id.
@@ -39,4 +39,14 @@ const get = (base62Id: string) => {
   return item;
 };
 
-export { get, insert };
+const getDb = () => {
+  return urlDb;
+}
+
+const setDb = (setter: Array<string>) => {
+  urlDb = setter;
+}
+
+
+
+export { get, insert, getDb, setDb };
