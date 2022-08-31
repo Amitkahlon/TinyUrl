@@ -2,12 +2,18 @@
 
 Automation example for a simple TinyUrl website. 
 
+## Project Architecture
 Tests: 
-- E2E Tests: Cypress
-- HTTP Tests: Mocha
-- Unit Tests: Jest
+- E2E Tests: Cypress.
+- HTTP Tests: Mocha.
+- Unit Tests: Jest.
 
-Server:
-- Node express
-- UI framework: React
-- Monorepo using Lerna
+Application:
+- Server: Node express.
+- UI Framework: React.
+- Project Management: Monorepo using Lerna.
+
+
+## Authors
+
+- [@Amit Kahlon](https://www.github.com/amitkahlon)
